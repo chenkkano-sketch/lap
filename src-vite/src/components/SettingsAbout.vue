@@ -12,6 +12,36 @@
       </div>
     </div>
 
+    <!-- author notice -->
+    <div class="w-full max-w-lg rounded-box border border-primary/15 bg-primary/5 p-4 text-left shadow-sm">
+      <div class="mb-3 flex items-center justify-between gap-3">
+        <h4 class="text-sm font-semibold text-base-content">
+          {{ $t('settings.about.author_notice.title') }}
+        </h4>
+        <span class="badge badge-primary badge-sm">{{ NIKKI_AUTHOR_NAME }}</span>
+      </div>
+
+      <p class="text-sm leading-6 text-base-content/70">
+        {{ NIKKI_FORK_NOTE }}
+      </p>
+
+      <div class="mt-4 grid gap-2 text-sm">
+        <a
+          v-for="link in authorLinks"
+          :key="link.href"
+          :href="link.href"
+          target="_blank"
+          class="flex items-center justify-between gap-3 rounded-box bg-base-100/70 px-3 py-2 transition-colors hover:bg-base-100 hover:text-primary"
+        >
+          <span class="flex min-w-0 items-center gap-2">
+            <component :is="link.icon" class="t-icon-size-sm shrink-0" />
+            <span class="truncate">{{ link.label }}</span>
+          </span>
+          <IconExternal class="t-icon-size-sm shrink-0 opacity-50" />
+        </a>
+      </div>
+    </div>
+
     <!-- package info -->
     <div class="w-full max-w-lg rounded-box border border-base-content/5 bg-base-300/30 p-4 shadow-sm">
       <div class="space-y-3 text-left">
@@ -53,14 +83,6 @@
             {{ $t('settings.about.package.link') }}
           </div>
           <div class="flex flex-wrap items-center justify-start">
-            <!-- <a
-              :href="packageInfo.homepage"
-              target="_blank"
-              class="inline-flex items-center gap-1.5 rounded-box px-2 py-1 text-xs transition-colors hover:bg-base-100/50 hover:text-primary"
-            >
-              <IconLink class="t-icon-size-sm" />
-              <span>{{ $t('settings.about.package.website') }}</span>
-            </a> -->
             <a
               :href="packageInfo.repository"
               target="_blank"
@@ -97,8 +119,16 @@ import { computed, ref, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getPackageInfo, getBuildTime } from '@/common/api';
 import { useAppUpdater } from '@/common/updater';
-import { IconGithub, IconLink, IconLock, IconFocus } from '@/common/icons';
-import { NIKKI_APP_NAME } from '@/common/nikki';
+import { IconExternal, IconFocus, IconGithub, IconLink, IconLock } from '@/common/icons';
+import {
+  NIKKI_APP_NAME,
+  NIKKI_AUTHOR_NAME,
+  NIKKI_BLOG_URL,
+  NIKKI_FORK_NOTE,
+  NIKKI_NEW_PROJECT_URL,
+  NIKKI_OLD_PROJECT_URL,
+  NIKKI_TAVERN_URL,
+} from '@/common/nikki';
 import iconLogo from '@/assets/images/icon.png';
 
 const packageInfo = ref<any>({
@@ -129,6 +159,28 @@ const issuesUrl = computed(() => {
 });
 const { locale, messages } = useI18n();
 const localeMsg = computed(() => messages.value[locale.value] as any);
+const authorLinks = computed(() => [
+  {
+    label: localeMsg.value?.settings?.about?.author_notice?.blog || '博客',
+    href: NIKKI_BLOG_URL,
+    icon: IconLink,
+  },
+  {
+    label: localeMsg.value?.settings?.about?.author_notice?.tavern || '博客留言板',
+    href: NIKKI_TAVERN_URL,
+    icon: IconFocus,
+  },
+  {
+    label: localeMsg.value?.settings?.about?.author_notice?.new_project || '新的项目地址',
+    href: NIKKI_NEW_PROJECT_URL,
+    icon: IconGithub,
+  },
+  {
+    label: localeMsg.value?.settings?.about?.author_notice?.old_project || '旧项目地址',
+    href: NIKKI_OLD_PROJECT_URL,
+    icon: IconGithub,
+  },
+]);
 const {
   isCheckingUpdate,
   isInstallingUpdate,

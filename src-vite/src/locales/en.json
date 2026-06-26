@@ -1319,6 +1319,13 @@
     },
     "about": {
       "title": "About",
+      "author_notice": {
+        "title": "Author Notice",
+        "blog": "Kuikui's blog",
+        "tavern": "Blog message board",
+        "new_project": "New project",
+        "old_project": "Original project"
+      },
       "package": {
         "name": "Package name",
         "description": "Description",

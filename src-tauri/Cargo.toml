@@ -3,9 +3,9 @@
 name = "nikki-album"
 version = "0.2.4"
 description = "A simple local screenshot album for Infinity Nikki."
-homepage = "https://github.com/chenkkano-sketch/lap"
+homepage = "https://www.kkano.cc/"
 repository = "https://github.com/chenkkano-sketch/lap"
-authors = ["chenkkano-sketch", "julyx10 <tiangle@gmail.com>"]
+authors = ["盔盔", "julyx10 <tiangle@gmail.com>"]
 edition = "2024"
 license = "GPL-3.0-or-later"
 build = "build.rs"

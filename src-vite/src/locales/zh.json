@@ -1319,6 +1319,13 @@
     },
     "about": {
       "title": "关于",
+      "author_notice": {
+        "title": "作者声明",
+        "blog": "盔盔的博客",
+        "tavern": "博客留言板",
+        "new_project": "新的项目地址",
+        "old_project": "旧项目地址"
+      },
       "package": {
         "name": "包名",
         "description": "描述",

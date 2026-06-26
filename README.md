@@ -2,6 +2,18 @@
 
 一个面向《无限暖暖》截图的本地相册工具，基于 [Lap](https://github.com/julyx10/lap) 二次开发。
 
+## 作者声明
+
+- 作者：盔盔
+- 博客：https://www.kkano.cc/
+- 博客留言板：https://www.kkano.cc/#/tavern
+- 新的项目地址：https://github.com/chenkkano-sketch/lap
+- 旧项目地址：https://github.com/julyx10/lap
+
+## 二开说明
+
+暖暖相册由盔盔基于开源项目 Lap 二次开发，主要面向《无限暖暖》截图整理使用。感谢 Lap 原作者 julyx10 与社区贡献者，本项目继续保留原项目来源说明，并遵循 GPL-3.0-or-later 协议。
+
 ## 目标
 
 - 默认管理无限暖暖截图目录：
