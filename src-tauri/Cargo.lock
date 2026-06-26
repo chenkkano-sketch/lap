@@ -3,57 +3,6 @@
 version = 4
 
 [[package]]
-name = "nikki-album"
-version = "0.2.4"
-dependencies = [
- "arboard",
- "base64 0.22.1",
- "blake3",
- "cc",
- "chrono",
- "clipboard-win",
- "csv",
- "dirs 5.0.1",
- "fast_image_resize",
- "http",
- "image",
- "imagesize",
- "jxl-oxide",
- "kamadak-exif",
- "libc",
- "little_exif",
- "ndarray",
- "once_cell",
- "opener",
- "ort",
- "percent-encoding",
- "pinyin",
- "pkg-config",
- "rand 0.8.5",
- "reqwest 0.12.28",
- "rstar",
- "rusqlite",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-aptabase",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-os",
- "tauri-plugin-process",
- "tauri-plugin-shell",
- "tauri-plugin-updater",
- "tauri-plugin-window-state",
- "tokenizers",
- "tokio",
- "trash",
- "uuid",
- "walkdir",
- "zip 2.4.2",
-]
-
-[[package]]
 name = "adler2"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3197,6 +3146,57 @@ name = "new_debug_unreachable"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "650eef8c711430f1a879fdd01d4745a7deea475becfb90269c06775983bbf086"
+
+[[package]]
+name = "nikki-album"
+version = "0.2.4"
+dependencies = [
+ "arboard",
+ "base64 0.22.1",
+ "blake3",
+ "cc",
+ "chrono",
+ "clipboard-win",
+ "csv",
+ "dirs 5.0.1",
+ "fast_image_resize",
+ "http",
+ "image",
+ "imagesize",
+ "jxl-oxide",
+ "kamadak-exif",
+ "libc",
+ "little_exif",
+ "ndarray",
+ "once_cell",
+ "opener",
+ "ort",
+ "percent-encoding",
+ "pinyin",
+ "pkg-config",
+ "rand 0.8.5",
+ "reqwest 0.12.28",
+ "rstar",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-aptabase",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-os",
+ "tauri-plugin-process",
+ "tauri-plugin-shell",
+ "tauri-plugin-updater",
+ "tauri-plugin-window-state",
+ "tokenizers",
+ "tokio",
+ "trash",
+ "uuid",
+ "walkdir",
+ "zip 2.4.2",
+]
 
 [[package]]
 name = "nix"

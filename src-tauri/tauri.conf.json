@@ -53,7 +53,7 @@
     "active": true,
     "category": "Graphics and Design",
     "targets": "all",
-    "createUpdaterArtifacts": true,
+    "createUpdaterArtifacts": false,
     "icon": [
       "icons/icon.png",
       "icons/icon.ico",
@@ -62,6 +62,18 @@
     "resources": {
       "resources/models/*": "models",
       "resources/ffmpeg/*": "ffmpeg"
+    },
+    "windows": {
+      "wix": {
+        "language": "zh-CN",
+        "upgradeCode": "0c1431c4-66d7-5485-a1be-dd2aecb13958"
+      },
+      "nsis": {
+        "languages": [
+          "SimpChinese"
+        ],
+        "displayLanguageSelector": false
+      }
     }
   },
   "plugins": {

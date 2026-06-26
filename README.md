@@ -48,6 +48,36 @@ pnpm install
 pnpm build
 ```
 
+## Windows 打包
+
+需要先准备：
+
+- Visual Studio 2022 Build Tools，包含 C++ 生成工具
+- CMake
+- NASM
+- Rust stable
+- pnpm
+
+首次打包前下载本地资源：
+
+```powershell
+.\scripts\download_models.ps1
+.\scripts\download_ffmpeg_sidecar.ps1
+```
+
+生成安装包：
+
+```powershell
+cargo tauri build
+```
+
+输出目录：
+
+- `src-tauri\target\release\bundle\msi`
+- `src-tauri\target\release\bundle\nsis`
+
+默认不生成 updater artifacts，因为 Tauri 自动更新包需要 `TAURI_SIGNING_PRIVATE_KEY` 私钥签名。正式发布自动更新时，再开启 `bundle.createUpdaterArtifacts` 并配置签名环境变量。
+
 ## 协议
 
 本项目基于 Lap 二次开发，继续使用 GPL-3.0-or-later。公开分发修改版时，需要同时提供对应源码和许可证说明。
