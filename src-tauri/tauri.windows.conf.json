@@ -3,7 +3,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Lap",
+        "title": "暖暖相册",
         "minWidth": 800,
         "minHeight": 600,
         "decorations": false,

@@ -96,14 +96,14 @@ export const useConfigStore = defineStore('configStore', {
       tabIndex: 0,               // settings tab index (0: general, 1: library, 2: browse, 3: viewer, 4: search, 5: shortcuts, 6: advanced, 7: about)
 
       // general settings
-      language: 'en',             // default language
-      appearance: 1,              // appearance (0: light; 1: dark)
+      language: 'zh',             // default language
+      appearance: 0,              // appearance (0: light; 1: dark)
       lightTheme: 0,              // light theme color index
       darkTheme: 0,               // dark theme color index
       scale: 1,                   // root font-size scale
       showToolTip: true,          // show button tooltip
       showStatusBar: true,        // show status bar
-      autoCheckUpdates: true,      // automatically check for updates
+      autoCheckUpdates: false,     // automatically check for updates
       showCollections: false,      // show collection tray in left panel
       debugMode: false,           // debug mode
 
@@ -116,8 +116,8 @@ export const useConfigStore = defineStore('configStore', {
       // grid view settings
       thumbnailSize: 512,         // thumbnail image size (small: 128, medium: 256, large: 512, extra large: 1024)
       grid: {
-        size: 160,               // grid size, range 120-360
-        style: 0,                // 0: card view, 1: tile view, 2: justified view, 3: masonry view
+        size: 180,               // grid size, range 120-360
+        style: 3,                // 0: card view, 1: tile view, 2: justified view, 3: masonry view
         showFilmStrip: false,    // show filmstrip view
         scaling: 1,              // 0: Fit Entire Image, 1: Crop to Fill, 2: Stretch to Fill
         labelPrimary: 1,         // card view: primary label (1: Name)

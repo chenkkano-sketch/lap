@@ -146,7 +146,7 @@ async fn main() {
                             let url = format!("https://aka.ms/vs/17/release/vc_redist.{}.exe", arch);
                             let _ = std::process::Command::new("powershell")
                                 .args(["-NoProfile", "-Command", &format!(
-                                    r#"$wsh = New-Object -ComObject Wscript.Shell; $wsh.Popup('Lap requires the Microsoft Visual C++ Redistributable.`n`nA download page will open in your browser.`nPlease install it, then restart Lap.', 0, 'Lap - Missing Dependency', 0x30); Start-Process '{}'"#,
+                                    r#"$wsh = New-Object -ComObject Wscript.Shell; $wsh.Popup('暖暖相册需要安装 Microsoft Visual C++ Redistributable。`n`n浏览器会打开下载页面。`n安装完成后，请重新打开暖暖相册。', 0, '暖暖相册 - 缺少组件', 0x30); Start-Process '{}'"#,
                                     url
                                 )])
                                 .stdout(std::process::Stdio::null())

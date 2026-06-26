@@ -364,7 +364,7 @@ impl Default for AppConfig {
             current_library_id: "default".to_string(),
             libraries: vec![Library {
                 id: "default".to_string(),
-                name: "Default Library".to_string(),
+                name: "暖暖相册".to_string(),
                 created_at: now,
                 state: LibraryState::default(),
                 hidden: false,
@@ -385,7 +385,7 @@ fn get_app_data_folder_name() -> String {
     let identifier = APP_IDENTIFIER
         .get()
         .cloned()
-        .unwrap_or_else(|| "com.julyx10.lap".to_string());
+        .unwrap_or_else(|| "com.chenkkano.nikki-album".to_string());
 
     if cfg!(debug_assertions) {
         format!("{}.debug", identifier)
@@ -395,9 +395,9 @@ fn get_app_data_folder_name() -> String {
 }
 
 /// Get the cache directory for app-managed temporary data.
-/// macos: ~/Library/Caches/com.julyx10.lap
-/// windows: C:\Users\<username>\AppData\Local\com.julyx10.lap\cache
-/// linux: ~/.cache/com.julyx10.lap
+/// macos: ~/Library/Caches/com.chenkkano.nikki-album
+/// windows: C:\Users\<username>\AppData\Local\com.chenkkano.nikki-album\cache
+/// linux: ~/.cache/com.chenkkano.nikki-album
 pub fn get_app_cache_dir() -> Result<PathBuf, String> {
     let app_dir_name = get_app_data_folder_name();
     dirs::cache_dir()
@@ -618,7 +618,7 @@ fn recover_app_config_from_library_dbs() -> Result<AppConfig, String> {
         }
 
         let default_name = if id == "default" {
-            "Default Library".to_string()
+            "暖暖相册".to_string()
         } else {
             format!("Library {}", &id.chars().take(8).collect::<String>())
         };

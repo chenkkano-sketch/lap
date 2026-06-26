@@ -1,17 +1,17 @@
 {
   "sidebar": {
     "home": "主页",
-    "library": "资料库",
-    "album": "相册",
-    "search": "搜索",
+    "library": "全部",
+    "album": "图册",
+    "search": "找照片",
     "rating": "评分",
     "tag": "标签",
-    "calendar": "日历",
+    "calendar": "按日期",
     "location": "地点",
     "people": "人物",
     "camera": "相机",
     "map": "地图",
-    "settings": "设置"
+    "settings": "小设置"
   },
   "collection": {
     "title": "合集",
@@ -38,38 +38,38 @@
     "removed_toast": "已从合集移除 {count} 个文件"
   },
   "library": {
-    "all_files": "所有文件",
-    "on_this_day": "历史上的今天"
+    "all_files": "全部照片",
+    "on_this_day": "今天回忆"
   },
   "album": {
-    "album_list": "相册",
-    "smart_album_list": "智能相册",
-    "add_smart_album": "添加智能相册",
+    "album_list": "我的图册",
+    "smart_album_list": "自动图册",
+    "add_smart_album": "添加自动图册",
     "folder_unavailable": {
       "title": "无法访问文件夹",
       "description": "请重新连接存储设备，或检查文件夹位置。"
     },
     "edit": {
-      "title_add": "添加相册",
-      "title": "编辑相册",
+      "title_add": "添加图册",
+      "title": "编辑图册",
       "folder": "文件夹",
-      "select_folder": "选择文件夹",
-      "name": "名称",
-      "description": "描述",
-      "description_placeholder": "输入相册描述",
-      "images": "图片",
+      "select_folder": "选择截图文件夹",
+      "name": "名字",
+      "description": "小备注",
+      "description_placeholder": "写一点小备注",
+      "images": "照片",
       "videos": "视频",
       "scanned_files": "已扫描文件",
-      "files_to_scan": "待扫描文件",
+      "files_to_scan": "准备加入",
       "files_count": "{count} 个文件 ({size})",
       "files_counting": "正在统计文件...",
       "created_at": "创建时间",
       "modified_at": "修改时间",
-      "last_scan_time": "最近扫描"
+      "last_scan_time": "最近整理"
     },
     "no_albums": {
-      "title": "还没有相册",
-      "description": "添加包含图片或视频的文件夹以开始使用"
+      "title": "还没有图册",
+      "description": "点一下，先把暖暖截图放进来"
     },
     "no_smart_albums": {
       "description": "通过自定义查询条件创建智能相册。"
@@ -158,36 +158,46 @@
     }
   },
   "welcome": {
-    "title": "欢迎使用 Lap",
-    "description": "您的本地照片库。快速、可搜索，始终由您掌控。",
-    "add_album_title": "从添加相册开始",
-    "add_album_description": "选择一个文件夹，让 Lap 为您整理照片和视频。",
-    "search_title": "按记忆搜索",
-    "search_description": "用自然语言搜索，发现相似图片，即刻找到您想要的内容。",
-    "drag_title": "拖拽导入",
-    "drag_description": "从文件管理器或浏览器中直接拖拽照片到相册。"
+    "title": "暖暖相册",
+    "description": "把无限暖暖的截图放进来，慢慢挑、慢慢收藏。",
+    "add_album_title": "添加图册",
+    "add_album_description": "选择一个截图文件夹。",
+    "search_title": "找照片",
+    "search_description": "输入想找的画面。",
+    "drag_title": "拖进来",
+    "drag_description": "把照片拖到图册里。",
+    "nikki_path_label": "默认暖暖截图位置",
+    "open_nikki_album": "打开暖暖截图",
+    "choose_folder": "自己选择文件夹",
+    "quick_note_1": "原图不搬走",
+    "quick_note_2": "可以收藏",
+    "quick_note_3": "可以打标签",
+    "nikki_path_missing": "没有找到默认截图文件夹，请自己选择一下。",
+    "nikki_album_ready": "暖暖截图已加入图册。",
+    "nikki_album_exists": "这个暖暖图册已经在这里啦。",
+    "nikki_album_failed": "暂时没能添加图册，请换个文件夹试试。"
   },
   "search": {
-    "title": "图片搜索",
+    "title": "找照片",
     "search_images": "搜索",
     "similar_images": "相似图片",
     "filename_search": "文件名",
-    "image_search_placeholder": "搜索图片内容",
-    "image_search_history": "搜索历史",
-    "image_search_tips": "输入描述以搜索图片",
-    "similar_images_tips": "选择一张图片以查找相似项",
+    "image_search_placeholder": "比如：粉色裙子、夜晚、花海",
+    "image_search_history": "最近找过",
+    "image_search_tips": "写一句想找的画面",
+    "similar_images_tips": "选一张喜欢的，找相似照片",
     "filename_search_tips": "输入文件名进行搜索",
     "index": {
       "wait_index": "排队等待扫描",
-      "indexing": "正在扫描... {count}/{total}",
-      "discovering": "正在扫描相册... {count}/{total}",
+      "indexing": "正在整理... {count}/{total}",
+      "discovering": "正在找照片... {count}/{total}",
       "preparing_previews": "正在生成预览... {count}/{total}",
       "preparing_search": "正在准备搜索索引... {count}/{total}",
-      "complete": "扫描完成",
-      "complete_with_issues": "扫描完成，但有 {count} 个问题",
-      "paused": "扫描已暂停",
-      "description": "生成缩略图用于搜索和快速预览。大型相册可能需要几分钟。",
-      "cancel": "取消扫描",
+      "complete": "整理完成",
+      "complete_with_issues": "整理完成，有 {count} 个小问题",
+      "paused": "整理已暂停",
+      "description": "正在生成小预览，照片多时会多等一会儿。",
+      "cancel": "先暂停",
       "recovery": {
         "title": "扫描异常中断",
         "continue": "继续",
@@ -195,7 +205,7 @@
         "skip_once": "跳过这个文件并继续",
         "file_label": "最后扫描的文件",
         "message": "上一次扫描没有正常退出。",
-        "message_with_file": "上一次扫描没有正常退出。\n\n最后扫描的文件：\n{file}\n\n如果继续，Lap 将跳过该文件一次并恢复扫描。"
+        "message_with_file": "上一次整理没有正常退出。\n\n最后整理的文件：\n{file}\n\n如果继续，暖暖相册会先跳过这个文件一次，再继续整理。"
       }
     }
   },
@@ -232,12 +242,12 @@
     "one_star": "1 星"
   },
   "tag": {
-    "title": "标签",
-    "add_tag": "添加新标签",
+    "title": "小标签",
+    "add_tag": "添加小标签",
     "delete_tag": "删除标签",
     "edit_tag": "编辑标签",
-    "search_tags": "搜索标签",
-    "enter_new_tag_name": "输入新标签名称",
+    "search_tags": "找标签",
+    "enter_new_tag_name": "输入标签名字",
     "not_found": "未找到标签",
     "load_failed": "无法加载标签状态，请关闭对话框后重试。"
   },
@@ -430,25 +440,25 @@
       "person": "人脸识别仍处于测试阶段，结果可能不准确。"
     },
     "not_found": {
-      "albums": "未找到相册。添加包含图片或视频的文件夹",
-      "files": "未找到文件",
-      "image_files": "未找到图片文件",
+      "albums": "还没有图册。先添加一个截图文件夹",
+      "files": "这里还没有照片",
+      "image_files": "这里还没有照片",
       "raw_files": "未找到 RAW 文件",
       "video_files": "未找到视频文件",
       "image_raw_files": "未找到图片或 RAW 文件",
       "image_video_files": "未找到图片或视频文件",
       "raw_video_files": "未找到 RAW 或视频文件",
-      "folder_files": "此文件夹中没有文件",
-      "folder_files_hint": "尝试浏览子文件夹，或在设置中开启'显示子文件夹中的文件'以查看所有文件。",
+      "folder_files": "这个文件夹里还没有照片",
+      "folder_files_hint": "可以看看下面的小文件夹，或在设置里显示子文件夹照片。",
       "folders": "未找到文件夹",
       "favorite_folders": "未找到收藏的文件夹",
       "favorite_folders_hint": "在相册中收藏一个文件夹，即可在这里查看其文件和子文件夹内容",
       "folder_excluded": "此文件夹已被排除在搜索范围外",
       "folder_excluded_hint": "通过右键菜单将此文件夹包含到搜索中，即可在此查看其文件。",
       "tag": "未找到标签",
-      "tag_hint": "给文件添加标签后，会显示在这里",
-      "calendar": "未找到日历项",
-      "calendar_hint": "添加带拍摄日期的照片后，会显示在这里",
+      "tag_hint": "给照片加标签后，会显示在这里",
+      "calendar": "还没有日期",
+      "calendar_hint": "添加照片后，会按日期显示在这里",
       "location": "未找到地点",
       "location_hint": "添加带位置信息的照片后，会显示在这里",
       "person": "未找到人物",
@@ -481,7 +491,7 @@
     "album_exists": "此相册已存在"
   },
   "statusbar": {
-    "files_summary": "{count} 个文件 ({size})"
+    "files_summary": "{count} 张照片 ({size})"
   },
   "menu": {
     "select": {
@@ -495,21 +505,21 @@
       "unpin": "取消固定"
     },
     "library": {
-      "add": "添加库...",
-      "edit": "编辑库...",
-      "manage": "管理库...",
-      "remove": "移除库",
-      "default": "默认库"
+      "add": "添加相册库...",
+      "edit": "改名字...",
+      "manage": "管理相册库...",
+      "remove": "移除相册库",
+      "default": "默认相册库"
     },
     "album": {
-      "add": "添加相册...",
-      "edit": "编辑相册...",
-      "scan": "扫描相册文件",
-      "pause_scan": "暂停扫描",
+      "add": "添加图册...",
+      "edit": "编辑图册...",
+      "scan": "整理照片",
+      "pause_scan": "暂停整理",
       "include_in_search": "包含在搜索中",
       "exclude_from_search": "从搜索中排除",
-      "remove": "移除相册",
-      "refresh": "刷新文件夹"
+      "remove": "移除图册",
+      "refresh": "刷新照片"
     },
     "file": {
       "new_folder": "新建文件夹...",
@@ -519,7 +529,7 @@
       "edit_image": "编辑图片...",
       "open_image_in_app": "在 {app} 中打开图片...",
       "open_video_in_app": "在 {app} 中打开视频...",
-      "find_similar_images": "查找相似图片",
+      "find_similar_images": "找相似照片",
       "find_person_images": "查找人物图片",
       "print": "打印图片...",
       "rename": "重命名",
@@ -529,12 +539,12 @@
       "move_within_library": "在库内移动...",
       "move_to_folder": "移动到文件夹...",
       "copy_to_folder": "复制到文件夹...",
-      "move_to_trash": "移到废纸篓",
+      "move_to_trash": "放进回收站",
       "delete": "删除",
       "reveal_in_finder": "在访达中显示...",
       "reveal_in_file_explorer": "在文件资源管理器中显示...",
       "refresh_file_info": "刷新文件信息",
-      "set_album_cover": "设置为相册封面",
+      "set_album_cover": "设为图册封面",
       "show_info": "显示信息",
       "remove_from_collection": "从合集移除"
     },
@@ -971,7 +981,7 @@
       "network": "网络错误导致视频下载失败",
       "decode": "视频解码错误",
       "format": "视频格式暂不支持，或者文件已损坏。",
-      "external_player_recommended": "该视频需要先做兼容转码后才能在这里播放。对于长视频，Lap 更建议直接使用外部播放器，而不是等待后台处理。",
+      "external_player_recommended": "这个视频需要先做兼容处理后才能在这里播放。视频很长时，更建议直接使用外部播放器。",
       "open_in_external_app": "使用外部播放器打开",
       "open_in_external_app_named": "在 {app} 中打开...",
       "use_external": "若要打开不支持的格式，请在设置中配置外部播放器。",
@@ -982,7 +992,7 @@
   },
   "settings": {
     "general": {
-      "title": "通用",
+      "title": "常用",
       "section_language": "语言",
       "section_appearance": "外观",
       "section_interface": "显示",
@@ -994,7 +1004,7 @@
       ],
       "theme": "主题",
       "theme_options_light": [
-        "默认",
+        "暖暖粉",
         "纸杯蛋糕",
         "大黄蜂",
         "祖母绿",
@@ -1046,13 +1056,13 @@
       "auto_check_updates": "自动检查更新"
     },
     "library": {
-      "title": "资料库",
-      "section_album": "相册",
+      "title": "图册",
+      "section_album": "图册",
       "show_subfolder_files": "显示子文件夹中的文件",
       "show_subfolder_files_hint": "文件夹视图包含子文件夹内的文件",
-      "section_collections": "合集",
+      "section_collections": "临时小篮子",
       "show_collections": "显示合集",
-      "show_collections_hint": "启用合集托盘，用于通过拖放对项目进行分组。",
+      "show_collections_hint": "打开后，可以先把想处理的照片放在一起。",
       "section_sorting": "排序",
       "folder_sort": "文件夹",
       "folder_sort_hint": "相册下显示的文件夹排序方式",
@@ -1082,21 +1092,21 @@
       ]
     },
     "browse": {
-      "title": "浏览",
+      "title": "看照片",
       "section_grid": "网格",
       "style": "样式",
       "style_options": [
-        "卡片视图",
-        "平铺视图",
-        "自适应视图",
-        "瀑布流视图"
+        "卡片",
+        "方格",
+        "自动排版",
+        "瀑布流"
       ],
       "size": "缩略图大小",
       "scaling": "缩略图缩放",
       "scaling_options": [
-        "适应整个图像",
-        "裁剪填充",
-        "拉伸填充"
+        "看完整",
+        "铺满",
+        "拉伸"
       ],
       "label_primary": "卡片视图主标签",
       "label_secondary": "卡片视图副标签",
@@ -1157,7 +1167,7 @@
       "loop_video": "循环播放视频"
     },
     "image_search": {
-      "title": "搜索",
+      "title": "找照片",
       "search_image": "图片搜索",
       "search_model": "选择模型（重启生效）",
       "default_model_hint": "默认模型仅支持英文的图片搜索",
@@ -1170,7 +1180,7 @@
       "multilingual_model_download_message": "多语言图片搜索模型尚未安装。下载后可支持 50+ 语言搜索。",
       "download": "下载",
       "downloading_multilingual_model": "正在下载多语言模型",
-      "multilingual_model_download_success": "多语言搜索模型已就绪。重启 Lap 后生效。",
+      "multilingual_model_download_success": "多语言搜索模型已就绪。重启暖暖相册后生效。",
       "multilingual_model_download_failed": "多语言搜索模型下载失败",
       "find_similar": "查找相似图片",
       "similarity": "图片相似度",
@@ -1312,7 +1322,7 @@
       "package": {
         "name": "包名",
         "description": "描述",
-        "app_description": "一个面向大型本地照片库的离线优先照片管理器。",
+        "app_description": "一个简单可爱的无限暖暖本地截图相册。",
         "version": "版本",
         "build_time": "构建时间",
         "author": "作者",

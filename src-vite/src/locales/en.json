@@ -158,14 +158,24 @@
     }
   },
   "welcome": {
-    "title": "Welcome to Lap",
-    "description": "Your local photo library. Fast, searchable, and always under your control.",
+    "title": "Nikki Album",
+    "description": "Bring your Infinity Nikki screenshots here, then browse and collect the favorites.",
     "add_album_title": "Start by adding an album",
-    "add_album_description": "Select a folder and let Lap organize your photos and videos.",
+    "add_album_description": "Select a screenshot folder.",
     "search_title": "Search by memory",
     "search_description": "Search with natural language, discover similar images, and find what you're looking for instantly.",
     "drag_title": "Drag to import",
-    "drag_description": "Drag photos from your file manager or browser directly into an album."
+    "drag_description": "Drag photos from your file manager or browser directly into an album.",
+    "nikki_path_label": "Default Infinity Nikki screenshot folder",
+    "open_nikki_album": "Open Nikki Screenshots",
+    "choose_folder": "Choose Folder",
+    "quick_note_1": "Originals stay put",
+    "quick_note_2": "Favorites supported",
+    "quick_note_3": "Tags supported",
+    "nikki_path_missing": "The default screenshot folder was not found. Please choose it manually.",
+    "nikki_album_ready": "Nikki screenshots were added.",
+    "nikki_album_exists": "This Nikki album is already here.",
+    "nikki_album_failed": "Could not add the album. Please try another folder."
   },
   "search": {
     "title": "Image search",
@@ -195,7 +205,7 @@
         "skip_once": "Skip this file and continue",
         "file_label": "Last scanned file",
         "message": "The previous scan did not close normally.",
-        "message_with_file": "The previous scanning task did not exit cleanly.\n\nLast scanned file:\n{file}\n\nIf you continue, Lap will skip this file once and resume scanning."
+        "message_with_file": "The previous scanning task did not exit cleanly.\n\nLast scanned file:\n{file}\n\nIf you continue, Nikki Album will skip this file once and resume scanning."
       }
     }
   },
@@ -971,7 +981,7 @@
       "network": "Network error while loading video",
       "decode": "Video decoding error",
       "format": "Unsupported video format or the file is corrupted.",
-      "external_player_recommended": "This video needs compatibility transcoding before it can play here. For long videos, Lap recommends using an external player instead of waiting for background processing.",
+      "external_player_recommended": "This video needs compatibility transcoding before it can play here. For long videos, Nikki Album recommends using an external player instead of waiting for background processing.",
       "open_in_external_app": "Open in external player",
       "open_in_external_app_named": "Open video in {app}...",
       "use_external": "To open unsupported formats, set up an external player in Settings.",
@@ -994,7 +1004,7 @@
       ],
       "theme": "Theme",
       "theme_options_light": [
-        "Default",
+        "Nikki Pink",
         "Cupcake",
         "Bumblebee",
         "Emerald",
@@ -1170,7 +1180,7 @@
       "multilingual_model_download_message": "The multilingual image search model is not installed. Download it to enable search in 50+ languages.",
       "download": "Download",
       "downloading_multilingual_model": "Downloading multilingual model",
-      "multilingual_model_download_success": "Multilingual search model is ready. Restart Lap to use it.",
+      "multilingual_model_download_success": "Multilingual search model is ready. Restart Nikki Album to use it.",
       "multilingual_model_download_failed": "Failed to download multilingual search model",
       "find_similar": "Find similar images",
       "similarity": "Image similarity",

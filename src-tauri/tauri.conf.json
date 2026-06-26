@@ -1,7 +1,7 @@
 {
-  "productName": "Lap",
+  "productName": "暖暖相册",
   "version": "0.2.4",
-  "identifier": "com.julyx10.lap",
+  "identifier": "com.chenkkano.nikki-album",
   "build": {
     "beforeBuildCommand": "pnpm --dir ../src-vite build",
     "beforeDevCommand": "pnpm --dir ../src-vite dev",
@@ -39,6 +39,8 @@
           "$DESKTOP/**",
           "$DOWNLOAD/**",
           "$APPCACHE/**",
+          "E:\\game\\nikiki\\**",
+          "E:\\game\\nikiki\\InfinityNikki Launcher\\InfinityNikki\\X6Game\\ScreenShot\\**",
           "/Volumes/**",
           "/media/**",
           "/mnt/**",
@@ -65,7 +67,7 @@
   "plugins": {
     "updater": {
       "endpoints": [
-        "https://github.com/julyx10/lap/releases/latest/download/latest.json"
+        "https://github.com/chenkkano-sketch/lap/releases/latest/download/latest.json"
       ],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDUzMEQ0QzM2RTRDOUNEMjUKUldRbHpjbmtOa3dOVXlBYm0rYk9lY2FtVGpzWTJ2NkRqdUtSOEN4eUxwRlVTaUlVbkJ4aHhQS3gK"
     }

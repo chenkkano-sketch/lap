@@ -5,8 +5,8 @@ import { openExternalUrl } from '@/common/api';
 import { useToast, type ToastPlacement } from '@/common/toast';
 
 const UPDATE_CHECK_INTERVAL = 24 * 60 * 60 * 1000;
-const UPDATE_CHECK_KEY = 'lap_last_update_check';
-const UPDATE_RELEASE_NOTE_KEY = 'lap_update_release_note_version';
+const UPDATE_CHECK_KEY = 'nikki_album_last_update_check';
+const UPDATE_RELEASE_NOTE_KEY = 'nikki_album_update_release_note_version';
 const UPDATE_CHECK_TIMEOUT_MS = 8_000;
 
 function extractRawErrorMessage(error: unknown) {
@@ -69,7 +69,7 @@ export function useAppUpdater(localeMsg: Ref<any>, options: AppUpdaterOptions = 
   });
   const releaseNoteUrl = computed(() => {
     if (!releaseNoteVersion.value) return '';
-    return `https://github.com/julyx10/lap/releases/tag/v${releaseNoteVersion.value}`;
+    return `https://github.com/chenkkano-sketch/lap/releases/tag/v${releaseNoteVersion.value}`;
   });
   const downloadProgressLabel = computed(() => {
     if (downloadPercent.value === null) {

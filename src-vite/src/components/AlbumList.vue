@@ -219,16 +219,25 @@ import {
   getThumbnailDataUrl,
   getThumbnailDataUrlInflight,
   isWin,
+  normalizePathForCompare,
   setThumbnailDataUrlInflight,
   openFolderDialog,
 } from '@/common/utils';
 import { getAlbumQueueIndex, getAlbumScanState, getAlbumScanIcon, shouldAnimateAlbumScanIcon } from '@/common/scanStatus';
 import { getAllAlbums, setDisplayOrder, addAlbum, editAlbum, removeAlbum, 
          fetchFolder, expandFinalFolder, getFileThumbById,
-         getAlbum, hasImportableClipboard, isDirectoryAccessible, cancelIndexing as cancelIndexingApi, listenIndexProgress, listenIndexFinished } from '@/common/api';
+         getAlbum, hasImportableClipboard, isDirectoryAccessible, cancelIndexing as cancelIndexingApi,
+         listenIndexProgress, listenIndexFinished, getAllTags, createTag } from '@/common/api';
 import { DEFAULT_PLATFORM, getShortcutLabel } from '@/common/shortcuts';
 import { Album, Folder } from '@/common/types';
 import { useAlbumSelectionProvider, SelectionSource } from '@/composables/useAlbumSelection';
+import {
+  NIKKI_ALBUM_DESCRIPTION,
+  NIKKI_ALBUM_NAME,
+  NIKKI_SCREENSHOT_DIR,
+  NIKKI_STARTER_TAGS,
+} from '@/common/nikki';
+import { useToast } from '@/common/toast';
 
 import AlbumFolder from '@/components/AlbumFolder.vue';
 import AlbumEdit from '@/components/AlbumEdit.vue';
@@ -262,6 +271,7 @@ const props = withDefaults(defineProps<{
 const { t, locale, messages } = useI18n();
 const localeMsg = computed(() => messages.value[locale.value] as any);
 const uiStore = useUIStore();
+const toast = useToast();
 
 // Set up the selection context using provide/inject
 // Pass the expandAndSelectFolder callback so the composable can trigger folder expansion
@@ -352,6 +362,64 @@ const refreshAlbumAccess = async (album: Album) => {
     album.children = undefined;
   }
   return album.is_accessible;
+};
+
+const ensureStarterTags = async () => {
+  const tags = (await getAllTags()) || [];
+  const existingNames = new Set(tags.map((tag: any) => String(tag.name || '').trim()));
+
+  for (const tagName of NIKKI_STARTER_TAGS) {
+    if (!existingNames.has(tagName)) {
+      await createTag(tagName);
+      existingNames.add(tagName);
+    }
+  }
+};
+
+const setupDefaultNikkiAlbum = async (openDialogIfMissing = false) => {
+  const targetPath = normalizePathForCompare(NIKKI_SCREENSHOT_DIR);
+  const existingAlbum = albums.value.find((album: Album) =>
+    normalizePathForCompare(album.path) === targetPath
+  );
+
+  if (existingAlbum) {
+    await clickAlbum(existingAlbum);
+    toast.info(t('welcome.nikki_album_exists'));
+    return true;
+  }
+
+  if (!(await isDirectoryAccessible(NIKKI_SCREENSHOT_DIR))) {
+    toast.warning(t('welcome.nikki_path_missing'));
+    if (openDialogIfMissing) {
+      await clickNewAlbum();
+    }
+    return false;
+  }
+
+  const newAlbum = await addAlbum(NIKKI_SCREENSHOT_DIR);
+  if (!newAlbum) {
+    toast.warning(t('welcome.nikki_album_failed'));
+    return false;
+  }
+
+  await editAlbum(newAlbum.id, NIKKI_ALBUM_NAME, NIKKI_ALBUM_DESCRIPTION);
+  newAlbum.name = NIKKI_ALBUM_NAME;
+  newAlbum.description = NIKKI_ALBUM_DESCRIPTION;
+  albums.value.push(newAlbum);
+  await ensureStarterTags();
+  await clickAlbum(newAlbum);
+  showAlbumEdit.value = false;
+
+  libConfig.index.status = 1;
+  removePausedAlbum(newAlbum.id);
+  if (getAlbumQueueIndex(newAlbum.id, libConfig.index.albumQueue as any[]) === -1) {
+    libConfig.index.albumQueue.push(newAlbum.id);
+  }
+
+  tauriEmit('albums-refreshed', { albums: [newAlbum], refreshFolders: false });
+  tauriEmit('library-total-refreshed');
+  toast.success(t('welcome.nikki_album_ready'));
+  return true;
 };
 
 const openAlbumEdit = async (albumId: number) => {
@@ -451,7 +519,10 @@ const loadAlbumCovers = async () => {
 
 onMounted( async () => {
   if (albums.value.length === 0) {
-    albums.value = await getAllAlbums();
+    albums.value = (await getAllAlbums()) || [];
+    if (albums.value.length === 0) {
+      await setupDefaultNikkiAlbum(false);
+    }
     await loadAlbumCovers();
     isLoading.value = false;
 
@@ -942,6 +1013,7 @@ const onDragEnd = async () => {
 defineExpose({
   albums,
   clickNewAlbum,
+  setupDefaultNikkiAlbum,
   openAlbumEdit,
   refreshAlbums,
   clickFinalSubFolder,

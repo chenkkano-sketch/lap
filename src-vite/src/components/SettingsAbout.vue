@@ -7,7 +7,7 @@
         <img :src="iconLogo" class="w-20 h-20 select-none [-webkit-app-region:no-drag]" draggable="false" />
       </div>
       <div class="flex flex-col text-left">
-        <h3 class="text-xl">{{ packageInfo.name }}</h3>
+        <h3 class="text-xl">{{ NIKKI_APP_NAME }}</h3>
         <p class="mt-2">{{ $t('settings.about.package.app_description') }}</p>
       </div>
     </div>
@@ -98,6 +98,7 @@ import { useI18n } from 'vue-i18n';
 import { getPackageInfo, getBuildTime } from '@/common/api';
 import { useAppUpdater } from '@/common/updater';
 import { IconGithub, IconLink, IconLock, IconFocus } from '@/common/icons';
+import { NIKKI_APP_NAME } from '@/common/nikki';
 import iconLogo from '@/assets/images/icon.png';
 
 const packageInfo = ref<any>({
@@ -118,12 +119,12 @@ const displayVersion = computed(() => {
 });
 const privacyUrl = computed(() => {
   const repo = packageInfo.value.repository || '';
-  if (!repo) return 'https://github.com/julyx10/lap/blob/main/PRIVACY.md';
+  if (!repo) return 'https://github.com/chenkkano-sketch/lap/blob/main/PRIVACY.md';
   return repo.endsWith('/') ? `${repo}blob/main/PRIVACY.md` : `${repo}/blob/main/PRIVACY.md`;
 });
 const issuesUrl = computed(() => {
   const repo = packageInfo.value.repository || '';
-  if (!repo) return 'https://github.com/julyx10/lap/issues';
+  if (!repo) return 'https://github.com/chenkkano-sketch/lap/issues';
   return repo.endsWith('/') ? `${repo}issues` : `${repo}/issues`;
 });
 const { locale, messages } = useI18n();

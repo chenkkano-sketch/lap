@@ -11,7 +11,7 @@
     </transition>
 
     <!-- Title Bar -->
-    <TitleBar v-if="showDesktopTitleBar" titlebar="Lap" viewName="Home" :icon="iconLogo"/>
+    <TitleBar v-if="showDesktopTitleBar" :titlebar="NIKKI_APP_NAME" viewName="Home" :icon="iconLogo"/>
 
     <!-- Main Content -->
     <div class="flex-1 flex overflow-hidden">
@@ -91,7 +91,7 @@
                     @click="toggle"
                   >
                     <!-- <IconStack class="w-5 h-5 shrink-0" /> -->
-                    <span class="overflow-hidden whitespace-pre text-ellipsis max-w-32">{{ currentLibrary?.name || 'Library' }}</span>
+                    <span class="overflow-hidden whitespace-pre text-ellipsis max-w-32">{{ currentLibrary?.name || NIKKI_APP_NAME }}</span>
                     <IconArrowDown class="w-3 h-3 shrink-0 opacity-50" />
                   </button>
                 </template>
@@ -196,6 +196,7 @@ import { isWin, isMac, isLinux, SCALE_VALUES } from '@/common/utils';
 import { matchesShortcut, ShortcutPlatform } from '@/common/shortcuts';
 import { SIDEBAR } from '@/common/constants';
 import { getAppConfig, switchLibrary, cancelIndexing, cancelFaceIndex } from '@/common/api';
+import { NIKKI_APP_NAME } from '@/common/nikki';
 
 // vue components
 import Library from '@/components/Library.vue';
@@ -342,6 +343,7 @@ let unlistenOpenPreferences: (() => void) | null = null;
 let unlistenOpenAbout: (() => void) | null = null;
 let unlistenAlbumsRefreshed: (() => void) | null = null;
 let unlistenAddAlbumRequested: (() => void) | null = null;
+let unlistenSetupNikkiAlbumRequested: (() => void) | null = null;
 let unlistenEditAlbumRequested: (() => void) | null = null;
 const shortcutPlatform: ShortcutPlatform = isMac ? 'mac' : (isLinux ? 'linux' : 'windows');
 const {
@@ -359,27 +361,27 @@ const {
 
 // buttons
 const buttons = computed(() =>  [
-  { index: SIDEBAR.LIBRARY, icon: IconStack, component: Library, text: localeMsg.value.sidebar.library },
   { index: SIDEBAR.ALBUM, icon: IconFolders, component: AlbumList, text: localeMsg.value.sidebar.album, props: { selectionSource: 'album' } },
-  { index: SIDEBAR.SMART_ALBUM, icon: IconBolt, component: SmartAlbumList, text: localeMsg.value.album.smart_album_list },
-  { index: SIDEBAR.SEARCH, icon: IconSearch, component: ImageSearch, text: localeMsg.value.sidebar.search },
   { index: SIDEBAR.CALENDAR, icon: IconCalendarDay, component: Calendar, text: localeMsg.value.sidebar.calendar },
   { index: SIDEBAR.TAG, icon: IconTag, component: Tag, text: localeMsg.value.sidebar.tag },
-  { index: SIDEBAR.PERSON, icon: IconPerson, component: Person, text: localeMsg.value.sidebar.people, hidden: !config.settings.face.enabled },
-  { index: SIDEBAR.LOCATION, icon: IconLocation, component: Location, text: localeMsg.value.sidebar.location },
-  { index: SIDEBAR.CAMERA, icon: IconCameraAperture, component: Camera, text: localeMsg.value.sidebar.camera },
+  { index: SIDEBAR.SEARCH, icon: IconSearch, component: ImageSearch, text: localeMsg.value.sidebar.search },
+  { index: SIDEBAR.LIBRARY, icon: IconStack, component: Library, text: localeMsg.value.sidebar.library, hidden: true },
+  { index: SIDEBAR.SMART_ALBUM, icon: IconBolt, component: SmartAlbumList, text: localeMsg.value.album.smart_album_list, hidden: true },
+  { index: SIDEBAR.PERSON, icon: IconPerson, component: Person, text: localeMsg.value.sidebar.people, hidden: true },
+  { index: SIDEBAR.LOCATION, icon: IconLocation, component: Location, text: localeMsg.value.sidebar.location, hidden: true },
+  { index: SIDEBAR.CAMERA, icon: IconCameraAperture, component: Camera, text: localeMsg.value.sidebar.camera, hidden: true },
   // { icon: IconMapDefault, component: null, text: localeMsg.value.sidebar.map },
 ]);
 
-const activeSidebarButton = computed(() =>
-  buttons.value.find(item => item.index === config.main.sidebarIndex) || buttons.value[SIDEBAR.LIBRARY]
-);
+const activeSidebarButton = computed(() => {
+  const active = buttons.value.find(item => item.index === config.main.sidebarIndex);
+  return active && !active.hidden ? active : buttons.value[0];
+});
 
 const visibleButtons = computed(() =>
   buttons.value
     .map((item) => ({ ...item, disabled: libraryEmpty.value && item.index !== SIDEBAR.ALBUM }))
     .filter(item => !item.hidden)
-    .sort((a, b) => a.index - b.index)
 );
 
 watch(() => config.settings.face.enabled, (enabled) => {
@@ -442,6 +444,9 @@ onMounted(async () => {
   });
 
   appConfig.value = await getAppConfig();
+  if (activeSidebarButton.value.index !== config.main.sidebarIndex) {
+    config.main.sidebarIndex = SIDEBAR.ALBUM;
+  }
 
   void checkLibraryEmpty();
 
@@ -450,6 +455,14 @@ onMounted(async () => {
     showPanel.value = true;
     await nextTick();
     (panelRef.value as any)?.clickNewAlbum?.();
+  });
+
+  unlistenSetupNikkiAlbumRequested = await listen('setup-nikki-album-requested', async () => {
+    if (config.main.sidebarIndex !== SIDEBAR.ALBUM) config.main.sidebarIndex = SIDEBAR.ALBUM;
+    showPanel.value = true;
+    await nextTick();
+    await (panelRef.value as any)?.setupDefaultNikkiAlbum?.(true);
+    void checkLibraryEmpty();
   });
 
   unlistenEditAlbumRequested = await listen('edit-album-requested', async (event: any) => {
@@ -490,6 +503,8 @@ onBeforeUnmount(() => {
   unlistenAlbumsRefreshed = null;
   unlistenAddAlbumRequested?.();
   unlistenAddAlbumRequested = null;
+  unlistenSetupNikkiAlbumRequested?.();
+  unlistenSetupNikkiAlbumRequested = null;
   unlistenEditAlbumRequested?.();
   unlistenEditAlbumRequested = null;
 });
@@ -709,7 +724,7 @@ async function clickSettings(tabIndex?: number) {
 
   const options: any = {
     url: '/settings',
-    title: 'Settings',
+    title: localeMsg.value.sidebar.settings || '设置',
     width: Math.round(SETTINGS_BASE_WIDTH * getSettingsWindowScale()),
     height: Math.round(SETTINGS_BASE_HEIGHT * getSettingsWindowScale()),
     minWidth: Math.round(SETTINGS_BASE_WIDTH * getSettingsWindowScale()),

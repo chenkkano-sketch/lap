@@ -29,7 +29,7 @@ export const SCALE_VALUES = [0.8, 0.9, 1, 1.1, 1.2];
 /// set the theme
 export function setTheme(appearance: number, themeId: number) {
   const theme = appearance === 0 ? [
-    "light",
+    "nikki",
     "cupcake",
     "bumblebee",
     "emerald",
