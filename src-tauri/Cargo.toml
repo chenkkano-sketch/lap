@@ -1,7 +1,7 @@
 [package]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 name = "nikki-album"
-version = "0.2.4"
+version = "1.0.0"
 description = "A simple local screenshot album for Infinity Nikki."
 homepage = "https://www.kkano.cc/"
 repository = "https://github.com/chenkkano-sketch/lap"

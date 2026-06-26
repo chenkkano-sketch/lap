@@ -1,6 +1,6 @@
 {
   "productName": "暖暖相册",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "identifier": "com.chenkkano.nikki-album",
   "build": {
     "beforeBuildCommand": "pnpm --dir ../src-vite build",
